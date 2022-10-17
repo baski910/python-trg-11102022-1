@@ -11,12 +11,19 @@
     <table>
         <th>Title</th>
         <th>Author</th>
+        <th>Edit</th>
         {% for book in books %}
         <tr>
-            <td>{{ book.booktitle }}</td><td>{{ book.bookauthor }}</td>
+            <td>{{ book.booktitle }}</td><td>{{ book.bookauthor }}</td><td> <a href="dbapp1/edit/{{ book.bookid }}"></a> </td>
         </tr>
         {% endfor %}
     </table>
+
+    <form action="{% url 'dbapp1:create' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
     
 </body>
 </html>
