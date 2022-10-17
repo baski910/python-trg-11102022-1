@@ -18,6 +18,21 @@ def create(request):
         form = BookForm()
         return render(request, 'dbapp1/home.html',{'form': form})
 
+def edit(request, id):
+    book = Book.objects.get(id=id)
+    #form = BookForm(book)
+    return render(request, 'dbapp1/edit.html', {'book': book})
+
+def update(request,id):
+    book = Book.objects.get(id=id)
+    form = BookForm(request.POST, instance = book)
+    if form.is_valid():
+        form.save()
+        return redirect(reverse('dbapp1:home'))
+    form = BookForm(book)
+    return render(request,'dbapp1/edit.html',{'book': book})
+
+
 
 
 
