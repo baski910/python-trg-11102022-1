@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to DB application</h1>
+    <h1>List of Books</h1>
+    <table>
+        <th>Title</th>
+        <th>Author</th>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.booktitle }}</td><td>{{ book.bookauthor }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
 </body>
 </html>
