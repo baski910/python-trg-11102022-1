@@ -19,3 +19,8 @@ df = spark.createDataFrame(data=empData, schema=schema)
 #df.groupby("department").sum("salary").show()
 #g = df.groupby("department").sum("salary") 
 #g.write.csv("results") # creates a directory named 'results' and then create csv inside
+
+df1 = spark.createDataFrame(data = df.groupby("department").sum("salary").collect(),schema=["department","total"])
+
+df2 = df1.toPandas()
+print(df2)
